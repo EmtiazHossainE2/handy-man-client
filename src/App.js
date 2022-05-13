@@ -3,9 +3,7 @@ import React from 'react';
 const App = () => {
     return (
         <div>
-            <h1 className="text-6xl font-bold underline">
-      Hello world!
-    </h1>
+            <button class="btn btn-accent text-white">Button</button>
         </div>
     );
 };
