@@ -1,5 +1,4 @@
 import React from 'react';
-
 const Banner = () => {
     return (
         <div>
@@ -12,7 +11,8 @@ const Banner = () => {
                         <h1 class="text-6xl ">Experience Handyman </h1>
                         <h1 class="text-6xl ">Quality Services </h1>
                         <p class="py-6 text-lg ">If you're looking for the best handyman service to help you out around the house, look no further than Exponent.</p>
-                        <button class="btn btn-primary px-8">request service</button>
+                        <button class="btn btn-primary px-8">request service </button>
+                        
                     </div>
                 </div>
             </div>
