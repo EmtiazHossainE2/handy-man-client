@@ -6,7 +6,7 @@ import ServicesSection from './ServicesSection';
 
 const Home = () => {
     return (
-        <div className='mb-48'>
+        <div >
             <Banner />
             <div className='lg:px-12'>
                 <Badges />

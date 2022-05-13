@@ -79,10 +79,10 @@ const Intro = () => {
                 </div>
                 <div>
                     <div className='grid grid-cols-2 md:grid-cols-4 border-t-2 border-b-2  mt-12 py-4'>
-                        <div className="lg:max-w-lg bg-base-100 pb-8 md:pb-0">
+                        <div className="lg:max-w-lg bg-base-100 pb-12 md:pb-0">
                             <img src="https://i.ibb.co/VmPKhW7/section-2-grand-img-1-1.png" alt="" />
                         </div>
-                        <div className="lg:max-w-lg bg-base-100 pb-8 md:pb-0">
+                        <div className="lg:max-w-lg bg-base-100 pb-12 md:pb-0">
                             <img src="https://i.ibb.co/NK2RFMX/section-2-grand-img-1-2-1.png" alt="" />
                         </div>
                         <div className="lg:max-w-lg bg-base-100 ">

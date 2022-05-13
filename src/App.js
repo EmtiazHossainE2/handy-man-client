@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar';
 import NotFound from './components/NotFound';
 import About from './pages/About/About';
@@ -20,6 +21,7 @@ const App = () => {
                     <Route path='/login' element={<Login />}></Route>
                     <Route path='*' element={<NotFound />}></Route>
                 </Routes>
+                <Footer />
             </Navbar>
         </div>
     );

@@ -6,7 +6,7 @@ import { FaGreaterThan } from 'react-icons/fa';
 const ServiceSection = ({ service }) => {
     const { img, name, des } = service
     return (
-        <div class="card lg:max-w-lg bg-base-100 shadow-lg">
+        <div class="card lg:max-w-lg bg-base-100 shadow-lg ">
             <figure><img className='w-full' src={img} alt="serviceMan" /></figure>
             <div class="card-body">
                 <h2 class="card-title">{name}</h2>
