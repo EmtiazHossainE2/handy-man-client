@@ -2,6 +2,7 @@ import React from 'react';
 import Badges from './Badges';
 import Banner from './Banner';
 import Intro from './Intro';
+import ServicesSection from './ServicesSection';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
                 <Badges />
                 <Intro/>
             </div>
+            <ServicesSection/>
         </div>
     );
 };

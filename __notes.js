@@ -10,9 +10,12 @@ https://i.ibb.co/GHxx4BD/handyman-hero-img.png
 https://i.ibb.co/1sXW9qc/Hero-Section-bg.jpg
 
 https://i.ibb.co/BCJnRhL/home-maintainance.jpg
+
 https://i.ibb.co/vJKgGnb/plumbing-handyman-1.jpg
-https://i.ibb.co/Q80gn13/pricing-handyman-bg.jpg
+
 https://i.ibb.co/fnmJhSw/renovation-handyman.jpg
+
+https://i.ibb.co/Q80gn13/pricing-handyman-bg.jpg
 https://i.ibb.co/rtyYStt/services-handyman.jpg
 
 icon 
