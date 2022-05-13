@@ -23,7 +23,7 @@ const Badges = () => {
         },
     ]
     return (
-        <div className='mt-[-130px] grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 space-x-8 lg:px-12 mb-12'>
+        <div className=' lg:mt-[-130px] grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-4 mx-4 lg:mx-0 mb-12'>
             {
                 badges.map(badge => <Badge
                 key={badge._id}

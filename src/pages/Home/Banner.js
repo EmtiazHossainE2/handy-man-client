@@ -5,7 +5,9 @@ const Banner = () => {
         <div>
             <div class=" bg-base-200 bg-[url('https://i.ibb.co/1sXW9qc/Hero-Section-bg.jpg')]">
                 <div class="hero-content flex-col lg:flex-row-reverse">
-                    <img src="https://i.ibb.co/GHxx4BD/handyman-hero-img.png" className="max-w-sm lg:max-w-lg rounded-lg shadow-2xl" alt='man'/>
+                    <div >
+                        <img src="https://i.ibb.co/GHxx4BD/handyman-hero-img.png" className="max-w-sm lg:max-w-lg rounded-lg shadow-2xl" alt='man' />
+                    </div>
                     <div className='lg:px-8 font-bold text-white'>
                         <h1 class="text-6xl ">Experience Handyman </h1>
                         <h1 class="text-6xl ">Quality Services </h1>
