@@ -1,6 +1,7 @@
 import React from 'react';
 import Badges from './Badges';
 import Banner from './Banner';
+import Chooseus from './Chooseus';
 import HowOld from './HowOld';
 import Intro from './Intro';
 import MakeAppointmentSection from './MakeAppointmentSection';
@@ -18,6 +19,7 @@ const Home = () => {
             <ServicesSection/>
             <MoreServices/>
             <MakeAppointmentSection/>
+            <Chooseus/>
             <HowOld/>
         </div>
     );
