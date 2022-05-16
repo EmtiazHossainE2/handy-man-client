@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import auth from '../../Firebase/firebase.init';
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -42,8 +43,12 @@ const SignUp = () => {
 
     //signup 
     const onSubmit = async data => {
-        console.log(data);
         await createUserWithEmailAndPassword(data.email, data.password)
+        Swal.fire({
+            text: `An email verification send  .Check Email`,
+            icon: 'success',
+            confirmButtonText: 'Okay'
+        })
         await updateProfile({ displayName: data.myName });
     };
 
