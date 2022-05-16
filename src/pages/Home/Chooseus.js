@@ -59,7 +59,7 @@ const Chooseus = () => {
                                         <span className='text-secondary text-4xl mr-3 border-2 rounded-full p-3  '><BsCurrencyDollar /></span>
                                         <div className='space-y-2'>
                                             <h4 className="text-xl ">Affordable Price</h4>
-                                            <p className="text-[14px]"> it’s one of the most important tools we carry </p>
+                                            <p className="text-[14px]"> it's one of the most important tools we carry </p>
                                         </div>
                                     </div>
                                     
