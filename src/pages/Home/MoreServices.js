@@ -9,7 +9,7 @@ const MoreServices = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     <div className='md:col-span-1 md:pb-8 lg:pr-12 lg:mr-12'>
                         <h2 className='text-4xl font-bold '>More Services</h2>
-                        <p className='pt-5 pb-10 text-lg'>What can our professional workers do for you?</p>
+                        <p className='pt-5 pb-10 text-lg text-slate-500'>What can our professional workers do for you?</p>
                         <button className='btn btn-outline btn-secondary text-md uppercase'>download brochure</button>
                     </div>
                     <div className='md:col-span-1 lg:col-span-2 md:pb-8 '>

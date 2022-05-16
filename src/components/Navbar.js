@@ -1,7 +1,17 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import auth from '../Firebase/firebase.init';
 
 const Navbar = ({ children }) => {
+    const navigate = useNavigate();
+    const [user] = useAuthState(auth)
+    const logOut = () => {
+        signOut(auth)
+        navigate('/login');
+    }
+
     const menuItems = <>
         <li>
             <NavLink to='/' className='rounded-lg text-md font-bold'>
@@ -24,9 +34,14 @@ const Navbar = ({ children }) => {
             </NavLink>
         </li>
         <li>
-            <NavLink to='/login' className='rounded-lg text-md font-bold'>
-                Login
-            </NavLink>
+            {user?.uid
+                ?
+                <button onClick={logOut}  className='rounded-lg text-md font-bold'>Log Out</button>
+                :
+                <NavLink to='/login' className='rounded-lg text-md font-bold'>
+                    Login
+                </NavLink>
+            }
         </li>
     </>
     return (

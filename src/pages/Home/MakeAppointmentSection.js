@@ -16,8 +16,8 @@ const MakeAppointmentSection = () => {
                 <p className='text-white text-justify text-lg'>Our experts will solve them in no time, Make an Appointment.</p>
                 <div className='flex flex-col lg:flex-row space-x-6 py-5 '>
                     <button className=' btn btn-primary mx-2 px-0 lg:px-12 mb-5'>
-                        <span className='text-secondary pr-2'><BsFillTelephoneForwardFill /></span>
-                        <Link to='/' className="text-lg">(719) 445-2808</Link>
+                        <span className='text-secondary pr-2 text-xl pt-1'><BsFillTelephoneForwardFill /></span>
+                        <Link to='/' className="text-lg">(+880) 174-8658702</Link>
                     </button>
                     <button className=' btn btn-outline text-white mx-2 lg:px-12'>
                         <Link to='/contact' className="text-lg">contact with us</Link>

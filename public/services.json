@@ -3,18 +3,24 @@
         "id": "3101",
         "img": "https://i.ibb.co/fnmJhSw/renovation-handyman.jpg",
         "name": "Renovation",
+        "price": "200",
+        "available": "5",
         "des": "We have experience inany surface new constructions to cabinets in commercial properties. If you are doing your Contrary to popular belief."
     },
     {
         "id": "3102",
         "img": "https://i.ibb.co/vJKgGnb/plumbing-handyman-1.jpg",
         "name": "Plumbing Services",
+        "price": "500",
+        "available": "7",
         "des": "We have experience inany surface new constructions to cabinets in commercial properties. If you are doing your Contrary to popular belief."
     },
     {
         "id": "3103",
         "img": "https://i.ibb.co/BCJnRhL/home-maintainance.jpg",
         "name": "Home Maintainance",
+        "price": "400",
+        "available": "10",
         "des": "We have experience inany surface new constructions to cabinets in commercial properties. If you are doing your Contrary to popular belief."
     }
 ]

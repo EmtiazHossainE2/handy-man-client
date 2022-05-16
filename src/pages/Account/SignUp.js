@@ -1,60 +1,79 @@
 import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import auth from '../../Firebase/firebase.init';
 
-
-const Login = () => {
+const SignUp = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
-
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth ,{ sendEmailVerification: true });
+    
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
     //user
     useEffect(() => {
-        if (user || googleUser) {
+        if (user|| googleUser) {
             navigate(from, { replace: true });
             toast.success(`Welcome to Handy Man `, { id: 'success' })
         }
-    }, [user , googleUser, from, navigate])
+    }, [user,googleUser,from,navigate])
 
     //loading
-    if (loading || googleLoading) {
+    if (loading || updating || googleLoading) {
         return <Loading></Loading>
     }
 
     //error 
-    let signInError;
-    if (error) {
-        signInError = <p className='text-red-500 text-lg'>Could not find user</p>
-    }
-    // googleError 
-    let gError;
-    if (googleError) {
-        gError = <p className='text-red-500 text-lg'>Pop up is Closed by user</p>
+    let signUpError;
+    if (error || googleError || updateError) {
+        signUpError = <p className='text-red-500 text-lg'>Something is wrong</p>
     }
 
-    //login 
-    const onSubmit = data => {
+    //signup 
+    const onSubmit = async data => {
         console.log(data);
-        signInWithEmailAndPassword(data.email, data.password)
+        await createUserWithEmailAndPassword(data.email, data.password)
+        await updateProfile({ displayName: data.myName });
     };
 
     return (
         <div className='flex h-[60vh] lg:h-[100vh] justify-center items-center '>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body border-2 lg:border-none">
-                    <h2 className="text-center text-2xl">Log In</h2>
-                    {signInError}
-                    {gError}
+                    <h2 className="text-center text-2xl ">Sign Up</h2>
+                    {signUpError}
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label">
+                                    <span className="label-text text-lg">Name</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Your Name"
+                                    className="input input-bordered w-full max-w-xs text-lg"
+                                    {...register("myName", {
+                                        required: {
+                                            value: true,
+                                            message: 'Name is Required'
+                                        }
+                                    })}
+                                />
+                                <label className="label">
+                                    {errors.myName?.type === 'required' && <span className="label-text-alt text-red-500 text-[15px]">{errors.myName.message}</span>}
+                                </label>
+                            </div>
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
                                     <span className="label-text text-lg">Email</span>
@@ -102,20 +121,18 @@ const Login = () => {
                                         }
                                     })}
                                 />
-                                <label className="label ">
+                                <label className="label pb-3">
                                     {errors.password?.type === 'required' && <span className="label-text-alt text-red-500 text-[15px]">{errors.password.message}</span>}
                                     {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500 text-[15px]">{errors.password.message}</span>}
                                     {errors.password?.type === 'pattern' && <span className="label-text-alt text-red-500 text-[15px]">{errors.password.message}</span>}
                                 </label>
                             </div>
-                            <label className="label pb-2">
-                                <Link to='/forget' className="label-text-alt font-bold text-secondary text-[15px] link link-hover">Forgot password?</Link>
-                            </label>
-                            <input className='btn btn-secondary w-full max-w-xs text-white' type="submit" value="Login" />
+
+                            <input className='btn btn-secondary w-full max-w-xs  text-white' type="submit" value="Sign Up" />
                         </form>
-                        <p className='toggle-page py-2 '>
-                            New to Handy Man ?{" "}
-                            <span className='cursor-pointer text-blue-600' onClick={() => navigate("/signup")}>Create Account</span>
+                        <p className='text-sm text-center pt-3 '>
+                            Already have an account ?{" "}
+                            <span className='cursor-pointer text-blue-600' onClick={() => navigate("/login")}>Log In</span>
                         </p>
                     </div>
 
@@ -127,4 +144,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;

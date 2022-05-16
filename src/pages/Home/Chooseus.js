@@ -10,7 +10,7 @@ const Chooseus = () => {
                     <div>
                         <div className='space-y-4'>
                             <p className='uppercase text-secondary text-md'>why choose us</p>
-                            <h2 className='text-4xl font-bold'>Why Exponent Handyman Services</h2>
+                            <h2 className='text-4xl font-bold '>Why Exponent Handyman Services</h2>
                             <p>Courtesy may not be the first thing people think of when it comes to plumbing, but for us, it's one of the most important tools we carry. Nothing wears on homeowners like the idea of handling plumbing problems. Services</p>
                         </div>
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 pt-5 capitalize'>
