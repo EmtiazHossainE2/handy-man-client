@@ -13,7 +13,7 @@ const App = () => {
     return (
         <div className='max-w-7xl mx-auto'>
             <Navbar>
-                <Routes>
+                <Routes >
                     <Route path='/' element={<Home />}></Route>
                     <Route path='/services' element={<Services />}></Route>
                     <Route path='/about' element={<About />}></Route>

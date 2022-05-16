@@ -33,8 +33,8 @@ const Navbar = ({ children }) => {
         <div >
             <div className="drawer ">
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col">
-                    <div className="w-full navbar bg-[#2D77D4]  lg:px-12 " >
+                <div className="drawer-content flex flex-col ">
+                    <div className="w-full navbar bg-[#2e5789] text-white lg:px-12 sticky top-0 z-50" >
                         <Link to='/' className="flex-1 text-2xl font-bold px-2 mx-2 text-white">Handy Man</Link>
                         <div className="flex-none lg:hidden">
                             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">

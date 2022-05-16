@@ -5,6 +5,7 @@ https://i.ibb.co/8scsvDn/contact-bg-handyman.jpg
 https://i.ibb.co/LhY9zxn/handyman-about-intro.png
 
 https://i.ibb.co/v45yXJ0/handyman-cta-bg-2.jpg
+https://i.ibb.co/Y2tRQKL/make-Appointment.png
 https://i.ibb.co/GHxx4BD/handyman-hero-img.png
 
 https://i.ibb.co/1sXW9qc/Hero-Section-bg.jpg
