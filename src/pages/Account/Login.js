@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Loading from '../../components/Loading';
 import auth from '../../Firebase/firebase.init';
 
 
 const Login = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit,getValues } = useForm();
     const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -45,6 +47,30 @@ const Login = () => {
         console.log(data);
         signInWithEmailAndPassword(data.email, data.password)
     };
+
+    // reset password 
+    const forgetPassword = async () => {
+        const email = getValues('email')
+        console.log(email);
+        if(email == ''){
+            return Swal.fire({
+                text: `Email is required`,
+                icon: 'warning',
+                confirmButtonText: 'Okay'
+            })
+        }
+        else if (email) {
+            await sendPasswordResetEmail(email);
+            Swal.fire({
+                text: `An email send   .Check Email`,
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            })
+        }
+        if (resetError) {
+            toast.error(`Email is incorrect `, { id: "errorSend" });
+        }
+    }
 
     return (
         <div className='flex h-[60vh] lg:h-[100vh] justify-center items-center '>
@@ -109,7 +135,7 @@ const Login = () => {
                                 </label>
                             </div>
                             <label className="label pb-2">
-                                <Link to='/forget' className="label-text-alt font-bold text-secondary text-[15px] link link-hover">Forgot password?</Link>
+                                <p  onClick={forgetPassword} className="label-text-alt font-bold text-secondary text-[15px] link link-hover">Forgot password?</p>
                             </label>
                             <input className='btn btn-secondary w-full max-w-xs text-white' type="submit" value="Login" />
                         </form>
