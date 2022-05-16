@@ -1,5 +1,4 @@
 import React from 'react';
-import { BsFillTelephoneForwardFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const HowOld = () => {
@@ -13,8 +12,8 @@ const HowOld = () => {
                 </div>
             </div>
             <div className='flex-1 px-6 space-y-8'>
-                <h2 className='text-5xl text-white my-3 lg:pr-44'>Leave the sleepless nights to us</h2>
-                <p className='text-white text-justify text-lg'>We recognize that the breakdown of a relationship or marriage is one of the most stressful and traumatic events in a person's life.</p>
+                <h2 className='text-2xl lg:text-5xl text-white my-3 pt-5 lg:pr-44'>Leave the sleepless nights to us</h2>
+                <p className='text-white text-justify text-md lg:text-lg'>We recognize that the breakdown of a relationship or marriage is one of the most stressful and traumatic events in a person's life.</p>
                 <div className="my-5">
                     <button className='btn btn-primary'>
                     <Link to='/contact' className="text-lg">make an appointment</Link>
