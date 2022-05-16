@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaGreaterThan } from 'react-icons/fa';
-
+import './ServiceSection.css'
 
 const ServiceSection = ({ service }) => {
     const { img, name, des } = service
     return (
-        <div className="card lg:max-w-lg bg-base-100 shadow-lg ">
+        <div className="lg:max-w-lg bg-base-100 cart-container">
             <figure><img className='w-full' src={img} alt="serviceMan" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>

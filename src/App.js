@@ -11,7 +11,7 @@ import Services from './pages/Services/Services';
 
 const App = () => {
     return (
-        <div>
+        <div className='max-w-7xl mx-auto'>
             <Navbar>
                 <Routes>
                     <Route path='/' element={<Home />}></Route>
