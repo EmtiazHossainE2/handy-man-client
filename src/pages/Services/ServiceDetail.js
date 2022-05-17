@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Loading from '../../components/Loading';
-import useServiceDetail from '../../hooks/useServiceDetail'
 import BookingModal from './BookingModal';
 
 const ServiceDetail = () => {
     const { serviceId } = useParams()
-    const [detail] = useServiceDetail(serviceId)
-    const [getService , setGetService] = useState(null)
-    
+    // const [detail, setDetail] = useServiceDetail(serviceId)
+
+    const { data: detail, isLoading, refetch } = useQuery('detail', () => fetch(`http://localhost:5000/service/${serviceId}`).then(res => res.json()))
+
+    // console.log(detail);
+
+    const [getService, setGetService] = useState(null)
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <>
-
             <div className='px-5 lg:px-20 py-8 lg:py-16'>
                 <div className="flex flex-col lg:flex-row justify-start items-center">
                     <div className="flex-1">
@@ -22,7 +29,7 @@ const ServiceDetail = () => {
                     </div>
                     <div className="flex-1 px-5">
                         <div className='space-y-4'>
-                            <h2 className='text-2xl'>Service Name : {detail?.name}</h2>
+                            <h2 className='text-2xl pt-5 lg:mt-0'>Service Name : {detail?.name}</h2>
                             <p className='text-lg'>Available Service : {detail?.available}</p>
                             <h4 className='text-xl font-bold'>Price : ${detail?.price}</h4>
                             <p className='text-slate-500'><span className='font-bold text-lg'>Description :</span> {detail?.des}</p>
@@ -31,16 +38,17 @@ const ServiceDetail = () => {
                             <label
                                 htmlFor="booking-modal"
                                 disabled={detail?.available === 0}
-                                onClick={() => setGetService(detail)} 
+                                onClick={() => setGetService(detail)}
                                 className="btn btn-secondary uppercase " >Book Service</label>
                         </div>
                     </div>
                 </div>
                 {getService && <BookingModal
-                getService={getService}
-                setGetService={setGetService}
+                    getService={getService}
+                    setGetService={setGetService}
+                    refetch={refetch}
                 >
-            </BookingModal>}
+                </BookingModal>}
             </div>
         </>
     );

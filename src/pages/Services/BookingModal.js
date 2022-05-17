@@ -6,10 +6,12 @@ import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import auth from '../../Firebase/firebase.init';
 
-const BookingModal = ({ getService, setGetService }) => {
+const BookingModal = ({ getService, setGetService ,refetch }) => {
     const [user] = useAuthState(auth)
     const { serviceId } = useParams()
     
+    // console.log(serviceId);
+
     const handleBooking = (event) => {
         event.preventDefault()
         const bookingInfo = {
@@ -56,9 +58,10 @@ const BookingModal = ({ getService, setGetService }) => {
                         })
 
                         const newAvailable = {
-                            available: parseInt(getService.available) - 1 
+                            available: parseInt(getService?.available) - 1,
                         }
                         const url = `http://localhost:5000/service/${serviceId}`
+
                         fetch(url, {
                             method: 'PUT',
                             headers: {
@@ -69,6 +72,8 @@ const BookingModal = ({ getService, setGetService }) => {
                             .then(response => response.json())
                             .then(data => {
                                 setGetService(newAvailable)
+                                refetch()
+
                             })
                             .catch((error) => {
                                 // console.error(error);
@@ -81,7 +86,6 @@ const BookingModal = ({ getService, setGetService }) => {
                             confirmButtonText: 'Try Another Day'
                         })
                     }
-                    // refetch()
                     setGetService(null)
                 })
                 .catch(function (error) {
@@ -97,7 +101,7 @@ const BookingModal = ({ getService, setGetService }) => {
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="font-bold text-lg">Service Name:  {getService?.name}</h3>
+                    <h3 className="font-bold text-lg ">Service Name:  {getService?.name}</h3>
                     <p className="py-2 text-lg">Available:  {getService?.available}</p>
                     <div className='text-center '>
                         <form onSubmit={handleBooking} className='space-y-4 pt-8 '>
