@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import auth from '../../Firebase/firebase.init';
 
@@ -13,8 +15,17 @@ const BookingModal = ({ getService, setGetService }) => {
             available : getService?.available ,
             userName : user?.displayName,
             email : user?.email ,
+            date: event.target.date.value,
             address: event.target.address.value,
             phone: event.target.phone.value
+        }
+        if (bookingInfo.date === '' ) {
+            Swal.fire({
+                text: "Please select date",
+                icon: 'error',
+                confirmButtonText: 'Okay'
+            })
+            return
         }
         if (bookingInfo.address === '' ) {
             Swal.fire({
@@ -33,8 +44,30 @@ const BookingModal = ({ getService, setGetService }) => {
             return
         }
         
-        else{
-            setGetService(null)
+        else {
+            axios.post('http://localhost:5000/booking', bookingInfo)
+                .then(function (response) {
+                    if (response.data.success) {
+                        Swal.fire({
+                            text: `You are booking ${bookingInfo?.serviceName} on ${bookingInfo?.date} .We will contact you soon . `,
+                            icon: 'success',
+                            confirmButtonText: 'Thank you.'
+                        })
+                    }
+                    else {
+                        Swal.fire({
+                            text: `Already have a booking on ${response?.data?.booking?.date} `,
+                            icon: 'error',
+                            confirmButtonText: 'Try Another Day'
+                        })
+                    }
+                    // refetch()
+                    setGetService(null)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    toast.error(`Something is wrong . Try later `, { id: "bookingError" });
+                });
         }
         
         console.log(bookingInfo);
@@ -57,6 +90,7 @@ const BookingModal = ({ getService, setGetService }) => {
                         <form onSubmit={handleBooking} className='space-y-4 pt-8 '>
                             <input type="text" disabled value={user?.displayName || ''} name='userName' className="input input-bordered w-full max-w-md text-lg" />
                             <input type="email" disabled value={user?.email || ''} name='email' className="input input-bordered w-full max-w-md text-lg" />
+                            <input type="date"  name='date' className="input input-bordered w-full max-w-md text-lg" />
                             <textarea  rows={2} type="text" placeholder='Your Address' name='address' className=" input-bordered w-full textarea max-w-md text-lg " />
                             <input type="number" placeholder="Phone Number" name='phone' className="input input-bordered w-full max-w-md text-lg" />
                             <input type="submit" value="Submit" className="btn btn-secondary text-white w-full max-w-md text-lg" />
