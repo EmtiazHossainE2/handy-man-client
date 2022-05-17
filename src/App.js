@@ -11,6 +11,7 @@ import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import Services from './pages/Services/Services';
 import { Toaster } from 'react-hot-toast';
+import ServiceDetail from './pages/Home/ServiceDetail';
 
 
 
@@ -20,9 +21,10 @@ const App = () => {
             <Navbar>
                 <Routes >
                     <Route path='/' element={<Home />}></Route>
-                    <Route path='/services' element={
+                    <Route path='/services' element={<Services />}></Route>
+                    <Route path='/service/:serviceId' element={
                         <RequireAuth>
-                            <Services />
+                            <ServiceDetail/>
                         </RequireAuth>
                     }></Route>
                     <Route path='/about' element={<About />}></Route>
