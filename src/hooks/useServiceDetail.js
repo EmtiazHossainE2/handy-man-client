@@ -6,7 +6,6 @@ const useServiceDetail = (serviceId) => {
         fetch(`http://localhost:5000/service/${serviceId}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setDetail(data)
             })
     }, [serviceId])

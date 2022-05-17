@@ -11,7 +11,7 @@ import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import Services from './pages/Services/Services';
 import { Toaster } from 'react-hot-toast';
-import ServiceDetail from './pages/Home/ServiceDetail';
+import ServiceDetail from './pages/Services/ServiceDetail';
 
 
 
