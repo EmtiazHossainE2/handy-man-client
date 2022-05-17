@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Loading from '../../components/Loading';
 import useServiceDetail from '../../hooks/useServiceDetail'
 import BookingModal from './BookingModal';
 
@@ -7,6 +8,7 @@ const ServiceDetail = () => {
     const { serviceId } = useParams()
     const [detail] = useServiceDetail(serviceId)
     const [getService , setGetService] = useState(null)
+    
 
     return (
         <>
@@ -36,7 +38,8 @@ const ServiceDetail = () => {
                 </div>
                 {getService && <BookingModal
                 getService={getService}
-                setGetService={setGetService}>
+                setGetService={setGetService}
+                >
             </BookingModal>}
             </div>
         </>

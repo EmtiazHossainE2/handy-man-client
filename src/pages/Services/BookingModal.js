@@ -2,24 +2,25 @@ import axios from 'axios';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import auth from '../../Firebase/firebase.init';
 
 const BookingModal = ({ getService, setGetService }) => {
     const [user] = useAuthState(auth)
-
+    const { serviceId } = useParams()
+    
     const handleBooking = (event) => {
         event.preventDefault()
         const bookingInfo = {
-            serviceName : getService?.name,
-            available : getService?.available ,
-            userName : user?.displayName,
-            email : user?.email ,
+            serviceName: getService?.name,
+            userName: user?.displayName,
+            email: user?.email,
             date: event.target.date.value,
             address: event.target.address.value,
             phone: event.target.phone.value
         }
-        if (bookingInfo.date === '' ) {
+        if (bookingInfo.date === '') {
             Swal.fire({
                 text: "Please select date",
                 icon: 'error',
@@ -27,7 +28,7 @@ const BookingModal = ({ getService, setGetService }) => {
             })
             return
         }
-        if (bookingInfo.address === '' ) {
+        if (bookingInfo.address === '') {
             Swal.fire({
                 text: "Provide Original Address",
                 icon: 'error',
@@ -35,15 +36,15 @@ const BookingModal = ({ getService, setGetService }) => {
             })
             return
         }
-        if (bookingInfo.phone === '' ) {
+        if (bookingInfo.phone === '') {
             Swal.fire({
-                text:'Provide Phone Number',
+                text: 'Provide Phone Number',
                 icon: 'error',
                 confirmButtonText: 'Okay'
             })
             return
         }
-        
+
         else {
             axios.post('http://localhost:5000/booking', bookingInfo)
                 .then(function (response) {
@@ -53,6 +54,25 @@ const BookingModal = ({ getService, setGetService }) => {
                             icon: 'success',
                             confirmButtonText: 'Thank you.'
                         })
+
+                        const newAvailable = {
+                            available: parseInt(getService.available) - 1 
+                        }
+                        const url = `http://localhost:5000/service/${serviceId}`
+                        fetch(url, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(newAvailable),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                setGetService(newAvailable)
+                            })
+                            .catch((error) => {
+                                // console.error(error);
+                            });
                     }
                     else {
                         Swal.fire({
@@ -69,14 +89,7 @@ const BookingModal = ({ getService, setGetService }) => {
                     toast.error(`Something is wrong . Try later `, { id: "bookingError" });
                 });
         }
-        
-        console.log(bookingInfo);
-
-
-
     }
-
-
 
     return (
         <div>
@@ -90,8 +103,8 @@ const BookingModal = ({ getService, setGetService }) => {
                         <form onSubmit={handleBooking} className='space-y-4 pt-8 '>
                             <input type="text" disabled value={user?.displayName || ''} name='userName' className="input input-bordered w-full max-w-md text-lg" />
                             <input type="email" disabled value={user?.email || ''} name='email' className="input input-bordered w-full max-w-md text-lg" />
-                            <input type="date"  name='date' className="input input-bordered w-full max-w-md text-lg" />
-                            <textarea  rows={2} type="text" placeholder='Your Address' name='address' className=" input-bordered w-full textarea max-w-md text-lg " />
+                            <input type="date" name='date' className="input input-bordered w-full max-w-md text-lg" />
+                            <textarea rows={2} type="text" placeholder='Your Address' name='address' className=" input-bordered w-full textarea max-w-md text-lg " />
                             <input type="number" placeholder="Phone Number" name='phone' className="input input-bordered w-full max-w-md text-lg" />
                             <input type="submit" value="Submit" className="btn btn-secondary text-white w-full max-w-md text-lg" />
                         </form>
