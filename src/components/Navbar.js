@@ -3,6 +3,7 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import auth from '../Firebase/firebase.init';
+import demoProfile from '../assets/images/demo-profile.png'
 
 const Navbar = ({ children }) => {
     const navigate = useNavigate();
@@ -36,12 +37,26 @@ const Navbar = ({ children }) => {
         </li>
         {user?.uid
             ?
-            <li className='dropdown  dropdown-end'>
+            <div className='dropdown  dropdown-end '>
                 <label
                     tabIndex='0'
-                    className='btn btn-primary btn-outline text-black rounded-lg'
+                    className='rounded-full'
                 >
-                    Dashboard
+                    {user?.photoURL
+                        ?
+                        <div class="avatar">
+                            <div class="w-12 rounded-full cursor-pointer">
+                                <img src={user?.photoURL} alt="User" />
+                                {/* <img src={demoProfile} alt="Demo" /> */}
+                            </div>
+                        </div>
+                        :
+                        <div class="avatar">
+                            <div class="w-12 rounded-full cursor-pointer">
+                                <img src={demoProfile} alt="Demo" />
+                            </div>
+                        </div>
+                    }
                 </label>
                 <ul
                     tabIndex='0'
@@ -55,7 +70,7 @@ const Navbar = ({ children }) => {
 
                     <li><button onClick={logOut} className='text-lg'>Log Out</button></li>
                 </ul>
-            </li>
+            </div>
             :
             <NavLink to='/login' className='rounded-lg text-md font-bold pt-3'>
                 Login
