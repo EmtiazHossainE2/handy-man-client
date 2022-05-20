@@ -15,6 +15,9 @@ import ScrollToTop from './components/ScrollToTop';
 import Dashboard from './pages/Dashboard/Dashboard';
 import MyBooking from './pages/Dashboard/MyBooking';
 import MyReview from './pages/Dashboard/MyReview';
+import AllUser from './pages/Dashboard/AllUser';
+import AddServiceMan from './pages/Dashboard/AddServiceMan';
+import ManageServiceMan from './pages/Dashboard/ManageServiceMan';
 
 
 
@@ -41,6 +44,9 @@ const App = () => {
                         <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>}>
                             <Route path='my-booking' element={<MyBooking/>}></Route>
                             <Route path='my-review' element={<MyReview/>}></Route>
+                            <Route path='all-user' element={<AllUser/>}></Route>
+                            <Route path='add-service-man' element={<AddServiceMan/>}></Route>
+                            <Route path='manage-service-man' element={<ManageServiceMan/>}></Route>
                         </Route>
 
 

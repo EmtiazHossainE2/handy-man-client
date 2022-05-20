@@ -48,6 +48,9 @@ const Navbar = ({ children }) => {
                 >
                     <li><NavLink to='/dashboard/my-booking' className='text-lg'>My Booking</NavLink></li>
                     <li><NavLink to='/dashboard/my-review' className='text-lg'>My Review</NavLink></li>
+                    <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
+                    <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
+                    <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
 
                     <li><button onClick={logOut} className='text-lg'>Log Out</button></li>
                 </ul>
@@ -120,10 +123,13 @@ const Navbar = ({ children }) => {
                                     </div>
                                     <div className="drawer-side">
                                         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                                        <ul className="menu p-4 overflow-y-auto w-80 bg-[#f2f7f5] text-base-content space-y-4">
+                                        <ul className="menu p-4 overflow-y-auto w-80 bg-[#f2f7f5] text-base-content">
                                             {/* <!-- Sidebar content here --> */}
                                             <li><NavLink to='/dashboard/my-booking' className='text-lg'>My Booking</NavLink></li>
                                             <li><NavLink to='/dashboard/my-review' className='text-lg'>My Review</NavLink></li>
+                                            <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
+                                            <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
+                                            <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
 
                                             <li><button onClick={logOut} className='text-lg'>Log Out</button></li>
                                         </ul>
