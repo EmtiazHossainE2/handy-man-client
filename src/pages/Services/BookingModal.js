@@ -11,12 +11,13 @@ const BookingModal = ({ getService, setGetService ,refetch }) => {
     const { serviceId } = useParams()
     
     // console.log(serviceId);
-    // console.log(getService);
+    console.log(getService);
 
     const handleBooking = (event) => {
         event.preventDefault()
         const bookingInfo = {
             serviceName: getService?.name,
+            price: getService?.price,
             userName: user?.displayName,
             email: user?.email,
             date: event.target.date.value,
