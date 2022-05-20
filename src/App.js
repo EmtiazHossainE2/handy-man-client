@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar';
 import NotFound from './components/NotFound';
 import About from './pages/About/About';
@@ -13,6 +12,9 @@ import Services from './pages/Services/Services';
 import { Toaster } from 'react-hot-toast';
 import ServiceDetail from './pages/Services/ServiceDetail';
 import ScrollToTop from './components/ScrollToTop';
+import Dashboard from './pages/Dashboard/Dashboard';
+import MyBooking from './pages/Dashboard/MyBooking';
+import MyReview from './pages/Dashboard/MyReview';
 
 
 
@@ -33,10 +35,20 @@ const App = () => {
                         <Route path='/contact' element={<Contact />}></Route>
                         <Route path='/login' element={<Login />}></Route>
                         <Route path='/signup' element={<SignUp />}></Route>
+
+                        {/* dashboard start */} 
+
+                        <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>}>
+                            <Route path='my-booking' element={<MyBooking/>}></Route>
+                            <Route path='my-review' element={<MyReview/>}></Route>
+                        </Route>
+
+
+                        {/* dashboard end */} 
+
                         <Route path='*' element={<NotFound />}></Route>
                     </Routes>
                     <Toaster />
-                    <Footer />
                 </ScrollToTop>
             </Navbar>
         </div>

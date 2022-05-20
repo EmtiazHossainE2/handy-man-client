@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../../components/Footer/Footer';
 import Badges from './Badges';
 import Banner from './Banner';
 import Chooseus from './Chooseus';
@@ -21,6 +22,9 @@ const Home = () => {
             <MakeAppointmentSection/>
             <Chooseus/>
             <HowOld/>
+
+            
+            <Footer />
         </div>
     );
 };
