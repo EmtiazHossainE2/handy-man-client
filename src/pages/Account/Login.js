@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Loading from '../../components/Loading';
 import auth from '../../Firebase/firebase.init';
+import useToken from '../../hooks/useToken';
 
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
     const { register, formState: { errors }, handleSubmit,getValues } = useForm();
     const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+    const [token] = useToken(user || googleUser)
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -20,14 +22,14 @@ const Login = () => {
 
     //user
     useEffect(() => {
-        if (user || googleUser) {
+        if (token) {
             navigate(from, { replace: true });
             toast.success(`Welcome to Handy Man `, { id: 'success' })
         }
-    }, [user , googleUser, from, navigate])
+    }, [token, from, navigate])
 
     //loading
-    if (loading || googleLoading) {
+    if (loading || googleLoading || sending) {
         return <Loading></Loading>
     }
 

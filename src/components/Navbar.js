@@ -35,16 +35,16 @@ const Navbar = ({ children }) => {
         </li>
         {user?.uid
             ?
-            <li class='dropdown  dropdown-end'>
+            <li className='dropdown  dropdown-end'>
                 <label
                     tabIndex='0'
-                    class='btn btn-primary btn-outline text-black rounded-lg'
+                    className='btn btn-primary btn-outline text-black rounded-lg'
                 >
                     Dashboard
                 </label>
                 <ul
                     tabIndex='0'
-                    class='dropdown-content bg-[#2e5789] text-white menu p-2 shadow space-y-2 rounded-box w-52'
+                    className='dropdown-content bg-[#2e5789] text-white menu p-2 shadow space-y-2 rounded-box w-52'
                 >
                     <li><NavLink to='/dashboard/my-booking' className='text-lg'>My Booking</NavLink></li>
                     <li><NavLink to='/dashboard/my-review' className='text-lg'>My Review</NavLink></li>
