@@ -1,17 +1,42 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import auth from '../../Firebase/firebase.init';
 
 const MyBooking = () => {
     const [myBookings, setMyBookings] = useState([])
     const [user] = useAuthState(auth)
+    const navigate = useNavigate()
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/booking?email=${user?.email}`)
-                .then(res => res.json())
-                .then(data => setMyBookings(data))
+            fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+            })
+                .then(res => {
+                    // console.log('res', res);
+                    if (res.status === 401 || res.status === 403) {
+                        signOut(auth)
+                        localStorage.removeItem('accessToken')
+                        Swal.fire({
+                            text: 'Session expired sign in again . .',
+                            icon: 'error',
+                            confirmButtonText: 'Okay'
+                        })
+                        navigate('/login')
+                    }
+                    return res.json()
+                })
+                .then(data => {
+                    setMyBookings(data)
+                })
         }
-    }, [user])
+    }, [user,navigate])
+    
     return (
         <div>
             <h2 className='md:p-4 text-xl'>Hello , {user?.displayName} . You have {myBookings.length} booking</h2>
