@@ -4,10 +4,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import auth from '../Firebase/firebase.init';
 import demoProfile from '../assets/images/demo-profile.png'
+import useAdmin from '../hooks/useAdmin';
 
 const Navbar = ({ children }) => {
     const navigate = useNavigate();
     const [user] = useAuthState(auth)
+    const [admin] = useAdmin(user)
     // const goHome = () => {
     //     navigate('/');
     // }
@@ -67,9 +69,12 @@ const Navbar = ({ children }) => {
                 >
                     <li><NavLink to='/dashboard/my-booking' className='text-lg'>My Booking</NavLink></li>
                     <li><NavLink to='/dashboard/my-review' className='text-lg'>My Review</NavLink></li>
-                    <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
-                    <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
-                    <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
+                    {admin &&
+                        <>
+                            <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
+                            <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
+                            <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
+                        </>}
 
                     <li><button onClick={logOut} className='text-lg'>Log Out</button></li>
                 </ul>
