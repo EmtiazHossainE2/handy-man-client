@@ -1,7 +1,12 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import auth from '../../Firebase/firebase.init';
+import useAdmin from '../../hooks/useAdmin';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Dashboard = () => {
+    const [user] = useAuthState(auth)
+    const [admin] = useAdmin(user)
 
     return (
         <div>
@@ -18,9 +23,11 @@ const Dashboard = () => {
                         {/* <!-- Sidebar content here --> */}
                         <li><NavLink to='/dashboard/my-booking' className='text-lg'>My Booking</NavLink></li>
                         <li><NavLink to='/dashboard/my-review' className='text-lg'>My Review</NavLink></li>
-                        <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
-                        <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
-                        <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
+                        {admin && <>
+                            <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
+                            <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
+                            <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
+                        </>}
                     </ul>
 
                 </div>

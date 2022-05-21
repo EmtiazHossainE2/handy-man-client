@@ -4,10 +4,16 @@ import Loading from '../../components/Loading';
 import UserRow from './UserRow';
 
 const AllUser = () => {
-    const {data:users , isLoading , error , refetch} = useQuery('user' , () => fetch('http://localhost:5000/user').then(res => res.json()))
+    const { data: users, isLoading, error, refetch } = useQuery('user', () => fetch('http://localhost:5000/user', {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        },
+    })
+        .then(res => res.json()))
 
-    if(isLoading){
-        return <Loading/>
+    if (isLoading) {
+        return <Loading />
     }
     return (
         <div className='md:p-4'>

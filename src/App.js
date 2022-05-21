@@ -18,6 +18,7 @@ import MyReview from './pages/Dashboard/MyReview';
 import AllUser from './pages/Dashboard/AllUser';
 import AddServiceMan from './pages/Dashboard/AddServiceMan';
 import ManageServiceMan from './pages/Dashboard/ManageServiceMan';
+import RequireAdmin from './pages/Account/RequireAdmin';
 
 
 
@@ -39,18 +40,30 @@ const App = () => {
                         <Route path='/login' element={<Login />}></Route>
                         <Route path='/signup' element={<SignUp />}></Route>
 
-                        {/* dashboard start */} 
+                        {/* dashboard start */}
 
-                        <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>}>
-                            <Route path='my-booking' element={<MyBooking/>}></Route>
-                            <Route path='my-review' element={<MyReview/>}></Route>
-                            <Route path='all-user' element={<AllUser/>}></Route>
-                            <Route path='add-service-man' element={<AddServiceMan/>}></Route>
-                            <Route path='manage-service-man' element={<ManageServiceMan/>}></Route>
+                        <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
+                            <Route path='my-booking' element={<MyBooking />}></Route>
+                            <Route path='my-review' element={<MyReview />}></Route>
+                            <Route path='all-user' element={
+                                <RequireAdmin>
+                                    <AllUser />
+                                </RequireAdmin>}>
+                            </Route>
+                            <Route path='add-service-man' element={
+                                <RequireAdmin>
+                                    <AddServiceMan />
+                                </RequireAdmin>}>
+                            </Route>
+                            <Route path='manage-service-man' element={
+                                <RequireAdmin>
+                                    <ManageServiceMan />
+                                </RequireAdmin>}>
+                            </Route>
                         </Route>
 
 
-                        {/* dashboard end */} 
+                        {/* dashboard end */}
 
                         <Route path='*' element={<NotFound />}></Route>
                     </Routes>

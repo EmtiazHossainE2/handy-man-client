@@ -8,6 +8,9 @@ import demoProfile from '../assets/images/demo-profile.png'
 const Navbar = ({ children }) => {
     const navigate = useNavigate();
     const [user] = useAuthState(auth)
+    // const goHome = () => {
+    //     navigate('/');
+    // }
     const logOut = () => {
         signOut(auth)
         navigate('/login');
@@ -16,43 +19,43 @@ const Navbar = ({ children }) => {
 
     const menuItems = <>
         <li>
-            <NavLink to='/' className='rounded-lg text-md font-bold'>
+            <NavLink to='/' className='rounded-lg '>
                 Home
             </NavLink>
         </li>
         <li>
-            <NavLink to='/services' className='rounded-lg text-md font-bold'>
+            <NavLink to='/services' className='rounded-lg '>
                 Services
             </NavLink>
         </li>
         <li>
-            <NavLink to='/contact' className='rounded-lg text-md font-bold'>
+            <NavLink to='/contact' className='rounded-lg '>
                 Contact
             </NavLink>
         </li>
         <li>
-            <NavLink to='/about' className='rounded-lg text-md font-bold'>
+            <NavLink to='/about' className='rounded-lg '>
                 About
             </NavLink>
         </li>
         {user?.uid
             ?
-            <div className='dropdown  dropdown-end '>
+            <li className='dropdown  dropdown-end '>
                 <label
                     tabIndex='0'
-                    className='rounded-full'
+                    className='rounded-lg'
                 >
                     {user?.photoURL
                         ?
-                        <div class="avatar">
-                            <div class="w-12 rounded-full cursor-pointer">
+                        <div className="avatar">
+                            <div className="w-8  rounded-full cursor-pointer">
                                 <img src={user?.photoURL} alt="User" />
                                 {/* <img src={demoProfile} alt="Demo" /> */}
                             </div>
                         </div>
                         :
-                        <div class="avatar">
-                            <div class="w-12 rounded-full cursor-pointer">
+                        <div className="avatar">
+                            <div className="w-8 rounded-full cursor-pointer">
                                 <img src={demoProfile} alt="Demo" />
                             </div>
                         </div>
@@ -60,7 +63,7 @@ const Navbar = ({ children }) => {
                 </label>
                 <ul
                     tabIndex='0'
-                    className='dropdown-content bg-[#2e5789] text-white menu p-2 shadow space-y-2 rounded-box w-52'
+                    className='dropdown-content bg-[#2e5789] text-white menu p-2 shadow space-y-2 w-52'
                 >
                     <li><NavLink to='/dashboard/my-booking' className='text-lg'>My Booking</NavLink></li>
                     <li><NavLink to='/dashboard/my-review' className='text-lg'>My Review</NavLink></li>
@@ -70,15 +73,12 @@ const Navbar = ({ children }) => {
 
                     <li><button onClick={logOut} className='text-lg'>Log Out</button></li>
                 </ul>
-            </div>
+            </li>
             :
             <NavLink to='/login' className='rounded-lg text-md font-bold pt-3'>
                 Login
             </NavLink>
         }
-
-
-
 
     </>
     return (
