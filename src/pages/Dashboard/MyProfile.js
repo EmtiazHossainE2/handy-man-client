@@ -92,7 +92,7 @@ const MyProfile = () => {
                                 <div>
                                     {myDetails?.role ?
                                         <>
-                                            <p className=''>{myDetails?.role}</p>
+                                            <p className='capitalize'>{myDetails?.role}</p>
                                         </>
                                         :
                                         <p className=''>User</p>

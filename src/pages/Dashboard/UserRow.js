@@ -47,6 +47,47 @@ const UserRow = ({ user, index, refetch }) => {
         })
 
     }
+    const makeUser = () => {
+        const url = `http://localhost:5000/user/user/${email}`
+        Swal.fire({
+            text: "Are you sure to remove admin ?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Remove",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                })
+                    .then(res => {
+                        if (res.status === 403) {
+                            Swal.fire({
+                                text: 'Your are unable to remove',
+                                icon: 'error',
+                                confirmButtonText: 'Okay'
+                            })
+                        }
+                        return res.json()
+                    })
+                    .then(data => {
+                        if (data.modifiedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                text: `Successfully remove`,
+                                icon: 'success',
+                                confirmButtonText: 'Thank you.'
+                            })
+                        }
+                    })
+            }
+        })
+
+    }
 
     const handleDelete = () => {
         const url = `http://localhost:5000/user/${email}`;
@@ -102,16 +143,17 @@ const UserRow = ({ user, index, refetch }) => {
             </td>
             <td>{email}</td>
             <td>
-                {role ?
+
+                {role==='admin' ?
                     <div className='text-lg text-green-500 font-bold'>Admin</div>
                     :
                     <div className='text-md'>user</div>
                 }
             </td>
             <td>
-                {role ?
+                {role==='admin' ?
                     <>
-                        <button className='btn btn-xs'>Remove Admin</button>
+                        <button onClick={makeUser} className='btn btn-xs'>Remove Admin</button>
                     </>
                     :
                     <>
