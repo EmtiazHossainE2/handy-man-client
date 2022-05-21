@@ -67,13 +67,14 @@ const Navbar = ({ children }) => {
                     tabIndex='0'
                     className='dropdown-content bg-[#2e5789] text-white menu p-2 shadow space-y-2 w-52'
                 >
+                    <li><NavLink to='/dashboard/my-profile' className='text-lg'>Profile</NavLink></li>
                     <li><NavLink to='/dashboard/my-booking' className='text-lg'>My Booking</NavLink></li>
                     <li><NavLink to='/dashboard/my-review' className='text-lg'>My Review</NavLink></li>
                     {admin &&
                         <>
-                            <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
                             <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
                             <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
+                            <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
                         </>}
 
                     <li><button onClick={logOut} className='text-lg'>Log Out</button></li>
@@ -146,11 +147,15 @@ const Navbar = ({ children }) => {
                                         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                                         <ul className="menu p-4 overflow-y-auto w-80 bg-[#f2f7f5] text-base-content">
                                             {/* <!-- Sidebar content here --> */}
+                                            <li><NavLink to='/dashboard/my-profile' className='text-lg'>Profile</NavLink></li>
                                             <li><NavLink to='/dashboard/my-booking' className='text-lg'>My Booking</NavLink></li>
                                             <li><NavLink to='/dashboard/my-review' className='text-lg'>My Review</NavLink></li>
-                                            <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
-                                            <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
-                                            <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
+                                            {admin &&
+                                                <>
+                                                    <li><NavLink to='/dashboard/add-service-man' className='text-lg'>Add Service Man</NavLink></li>
+                                                    <li><NavLink to='/dashboard/manage-service-man' className='text-lg'>Manage Service Man</NavLink></li>
+                                                    <li><NavLink to='/dashboard/all-user' className='text-lg'>All User</NavLink></li>
+                                                </>}
 
                                             <li><button onClick={logOut} className='text-lg'>Log Out</button></li>
                                         </ul>

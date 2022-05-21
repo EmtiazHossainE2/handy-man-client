@@ -19,6 +19,7 @@ import AllUser from './pages/Dashboard/AllUser';
 import AddServiceMan from './pages/Dashboard/AddServiceMan';
 import ManageServiceMan from './pages/Dashboard/ManageServiceMan';
 import RequireAdmin from './pages/Account/RequireAdmin';
+import MyProfile from './pages/Dashboard/MyProfile';
 
 
 
@@ -43,6 +44,7 @@ const App = () => {
                         {/* dashboard start */}
 
                         <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
+                            <Route path='my-profile' element={<MyProfile />}></Route>
                             <Route path='my-booking' element={<MyBooking />}></Route>
                             <Route path='my-review' element={<MyReview />}></Route>
                             <Route path='all-user' element={
