@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {  useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Loading from '../../components/Loading';
 import auth from '../../Firebase/firebase.init';
