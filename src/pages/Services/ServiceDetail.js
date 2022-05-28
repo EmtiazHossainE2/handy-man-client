@@ -8,7 +8,7 @@ const ServiceDetail = () => {
     const { serviceId } = useParams()
     // const [detail, setDetail] = useServiceDetail(serviceId)
 
-    const { data: detail, isLoading, refetch } = useQuery('detail', () => fetch(`http://localhost:5000/service/${serviceId}`).then(res => res.json()))
+    const { data: detail, isLoading, refetch } = useQuery('detail', () => fetch(`https://safe-hamlet-60048.herokuapp.com/service/${serviceId}`).then(res => res.json()))
 
     // console.log(detail);
 

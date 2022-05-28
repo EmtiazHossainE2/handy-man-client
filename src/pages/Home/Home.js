@@ -11,7 +11,7 @@ import ServicesSection from './ServicesSection';
 
 const Home = () => {
     return (
-        <div >
+        <div>
             <Banner />
             <div className='lg:px-12'>
                 <Badges />
@@ -22,8 +22,6 @@ const Home = () => {
             <MakeAppointmentSection/>
             <Chooseus/>
             <HowOld/>
-
-            
             <Footer />
         </div>
     );

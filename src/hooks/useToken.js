@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 const useToken = user => {
-    const [token,setToken] = useState('') ;
+    const [token, setToken] = useState('');
     useEffect(() => {
         // console.log('inside token' , user);
         const email = user?.user?.email
@@ -17,7 +17,7 @@ const useToken = user => {
             lastLogin
         }
         if (email) {
-            fetch(`http://localhost:5000/user/${email}`, {
+            fetch(`https://safe-hamlet-60048.herokuapp.com/user/${email}`, {
                 method: "PUT",
                 headers: {
                     "content-type": 'application/json'
@@ -34,7 +34,7 @@ const useToken = user => {
         }
 
 
-    },[user])
+    }, [user])
     return [token]
 }
 

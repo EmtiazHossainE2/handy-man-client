@@ -16,7 +16,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth)
     const email = user?.email
 
-    const { data: myProfile, isLoading, refetch } = useQuery('profile', () => fetch(`http://localhost:5000/profile/${email}`, {
+    const { data: myProfile, isLoading, refetch } = useQuery('profile', () => fetch(`https://safe-hamlet-60048.herokuapp.com/profile/${email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -52,7 +52,7 @@ const MyProfile = () => {
                         photoURL: img
                     }
                     // console.log(updateInfo);
-                    fetch(`http://localhost:5000/my-image/${myProfile._id}`, {
+                    fetch(`https://safe-hamlet-60048.herokuapp.com/my-image/${myProfile._id}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',

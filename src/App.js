@@ -26,7 +26,7 @@ import EditProfile from './pages/Dashboard/EditProfile';
 
 const App = () => {
     return (
-        <div className=''>
+        <div>
             <Navbar>
                 <ScrollToTop>
                     <Routes >

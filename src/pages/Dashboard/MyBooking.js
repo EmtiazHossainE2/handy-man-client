@@ -11,7 +11,7 @@ const MyBooking = () => {
     const navigate = useNavigate()
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+            fetch(`https://safe-hamlet-60048.herokuapp.com/booking?email=${user?.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -35,8 +35,8 @@ const MyBooking = () => {
                     setMyBookings(data)
                 })
         }
-    }, [user,navigate])
-    
+    }, [user, navigate])
+
     return (
         <div>
             <h2 className='md:p-4 text-xl'>Hello , {user?.displayName} . You have {myBookings.length} booking</h2>

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
 
-const useServiceDetail = (serviceId ) => {
+const useServiceDetail = (serviceId) => {
     const [detail, setDetail] = useState({})
     useEffect(() => {
-        fetch(`http://localhost:5000/service/${serviceId}`)
+        fetch(`https://safe-hamlet-60048.herokuapp.com/service/${serviceId}`)
             .then(res => res.json())
             .then(data => {
                 setDetail(data)
             })
-    }, [serviceId ])
+    }, [serviceId])
 
-    return [detail, setDetail ]
+    return [detail, setDetail]
 }
 
 export default useServiceDetail

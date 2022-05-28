@@ -1,9 +1,9 @@
 import React from 'react';
 const Banner = () => {
     return (
-        <div>
+        <div >
             <div className=" bg-base-200 bg-[url('https://i.ibb.co/1sXW9qc/Hero-Section-bg.jpg')]">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="hero-content flex-col lg:flex-row-reverse container mx-auto">
                     <div >
                         <img src="https://i.ibb.co/GHxx4BD/handyman-hero-img.png" className="max-w-sm lg:max-w-lg rounded-lg shadow-2xl" alt='man' />
                     </div>

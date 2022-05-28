@@ -6,10 +6,10 @@ import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import auth from '../../Firebase/firebase.init';
 
-const BookingModal = ({ getService, setGetService ,refetch }) => {
+const BookingModal = ({ getService, setGetService, refetch }) => {
     const [user] = useAuthState(auth)
     const { serviceId } = useParams()
-    
+
     // console.log(serviceId);
     // console.log(getService);
 
@@ -50,7 +50,7 @@ const BookingModal = ({ getService, setGetService ,refetch }) => {
         }
 
         else {
-            axios.post('http://localhost:5000/booking', bookingInfo)
+            axios.post('https://safe-hamlet-60048.herokuapp.com/booking', bookingInfo)
                 .then(function (response) {
                     if (response.data.success) {
                         Swal.fire({
@@ -62,7 +62,7 @@ const BookingModal = ({ getService, setGetService ,refetch }) => {
                         const newAvailable = {
                             available: parseInt(getService?.available) - 1,
                         }
-                        const url = `http://localhost:5000/service/${serviceId}`
+                        const url = `https://safe-hamlet-60048.herokuapp.com/service/${serviceId}`
 
                         fetch(url, {
                             method: 'PUT',

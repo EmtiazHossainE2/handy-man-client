@@ -14,7 +14,7 @@ const EditProfileInfo = () => {
     const email = user?.email
     const navigate = useNavigate()
 
-    const { data: myProfile, isLoading,  refetch } = useQuery('profile', () => fetch(`http://localhost:5000//profile/${email}`, {
+    const { data: myProfile, isLoading, refetch } = useQuery('profile', () => fetch(`https://safe-hamlet-60048.herokuapp.com//profile/${email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -41,7 +41,7 @@ const EditProfileInfo = () => {
             facebook: event.target.facebook.value
         }
         console.log(updateInfo);
-        fetch(`http://localhost:5000/profile/${profileId}`, {
+        fetch(`https://safe-hamlet-60048.herokuapp.com/profile/${profileId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
